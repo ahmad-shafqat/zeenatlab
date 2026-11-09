@@ -1,4 +1,4 @@
-# Zeenat Lab & Diagnostic Center — Wahdat Road
+# Zeenat Laboratories & Diagnostic Center — Wahdat Road
 
 Responsive React + Vite + Tailwind CSS branch website.
 
@@ -21,7 +21,7 @@ Deploy the `dist` folder to Netlify, Vercel or any static host. Configure an SPA
 
 ## Before publishing
 
-1. **Replace all sample test and package prices** in `src/data.js` with branch-approved figures. All prices are currently fictional and labeled illustrative.
+1. Individual tests and prices are maintained in `src/test-catalogue.js`: 118 entries transcribed from the supplied PDF. Its filename refers to 2026 while its printed heading says 2025, so the website intentionally shows no rate-list year. Package prices in `src/data.js` remain illustrative and require branch approval.
 2. Replace stock image URLs in `src/main.jsx` and `src/data.js` with authorized real branch photographs.
 3. Confirm branch address, phone, WhatsApp and operating hours. Copy `.env.example` to `.env` and enter values.
 4. Add a verified Google Maps *embed* URL to `VITE_MAP_EMBED_URL`.
