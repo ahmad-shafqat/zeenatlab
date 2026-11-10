@@ -113,4 +113,59 @@ export const faqs=[
   }
 ];
 
+export const aboutData={
+  heritage:{
+    established:'1964',
+    legalName:'The Medical Laboratories (Pvt.) Ltd.',
+    origin:'34 Lawrence Road, Lahore',
+    summary:'Founded in 1964 in Lahore from a modest two-room clinic on Lawrence Road, Zeenat Laboratories grew into one of Pakistan’s earliest and most trusted private diagnostic institutions.'
+  },
+  founder:{
+    name:'Dr. Zeenat Hussain',
+    role:'Founder & Pioneering Pathologist',
+    badge:'Founder · Est. 1964',
+    initials:'ZH',
+    image:'/images/zeenat.jfif',
+    imageAlt:'Portrait of Dr. Zeenat Hussain, Founder of Zeenat Laboratories',
+    bio:'Recognized as Punjab’s first qualified female doctor (1963) and the region’s first pathologist, Dr. Zeenat Hussain laid the foundation of private clinical diagnostics in Lahore with an unwavering commitment to accuracy and patient dignity.',
+    highlights:[
+      'Established Zeenat Laboratories (The Medical Laboratories) in 1964',
+      'Pioneered private pathology and diagnostic standards in Lahore',
+      'Over six decades of trusted medical testing heritage'
+    ]
+  },
+  centerHead:{
+    name:'Muhammad Zain',
+    role:'Center Head · Wahdat Road Branch',
+    experience:'2 Years of Experience',
+    initials:'MZ',
+    image:'/images/zain.jfif',
+    imageAlt:'Portrait of Muhammad Zain, Center Head at Zeenat Laboratories Wahdat Road',
+    bio:'Leading daily operations and patient care at our Wahdat Road (Multan Chungi) diagnostic center, Muhammad Zain brings 2 years of hands-on experience in clinical lab coordination, sterile sample workflows, and patient service.',
+    highlights:[
+      'Oversees walk-in reception & morning fasting schedules (from 7:30 AM)',
+      'Ensures strict sterile sampling & cold-chain specimen handling',
+      'Coordinates rapid WhatsApp PDF report delivery & patient guidance'
+    ]
+  },
+  pillars:[
+    {
+      title:'Precision & Hygiene',
+      desc:'Single-use sterile vacuum tubes, barcoded sample tracking, and strict quality checks for dependable results.'
+    },
+    {
+      title:'Open 7 Days a Week',
+      desc:'Serving Wahdat Road and Multan Chungi daily from 7:30 AM to 12:00 midnight, with walk-ins always welcome.'
+    },
+    {
+      title:'Doorstep Home Sampling',
+      desc:'Trained phlebotomists collect blood and routine samples comfortably from your home across nearby Lahore blocks.'
+    },
+    {
+      title:'Direct WhatsApp Reports',
+      desc:'Receive verified high-resolution PDF test reports straight on WhatsApp, or collect printed copies at reception.'
+    }
+  ]
+};
+
 export const money=n=>'Rs. '+n.toLocaleString('en-PK');

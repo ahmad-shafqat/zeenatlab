@@ -6,9 +6,9 @@ import {
   ShieldCheck, HeartPulse, ClipboardList, CheckCircle2, Search, CalendarDays,
   MessageCircle, Microscope, TestTube2, Activity, Mail, ChevronRight, ChevronDown,
   AlertCircle, Loader2, Check, Stethoscope, Home as HomeIcon, FileText, Send,
-  Sparkles, HelpCircle, Building2, Navigation
+  Sparkles, HelpCircle, Building2, Navigation, Award, UserCheck
 } from 'lucide-react';
-import { tests, packages, gallery, branches, contact, money, timings, homeSampling, faqs } from './data';
+import { tests, packages, gallery, branches, contact, money, timings, homeSampling, faqs, aboutData } from './data';
 import './index.css';
 
 const logo = '/images/zeenat-laboratories-logo.jpeg';
@@ -668,8 +668,8 @@ function Home() {
           <div>
             <Heading
               tag="About Zeenat Laboratories"
-              heading="Accurate diagnostics across Lahore"
-              description="With our established branch on Wahdat Road (near Ijaz Hospital), Zeenat Laboratories is committed to providing precise pathology and compassionate outpatient service."
+              heading="Over 60 years of diagnostic trust in Lahore"
+              description="Rooted in the 1964 legacy of Dr. Zeenat Hussain, our Wahdat Road branch (near Ijaz Hospital) delivers accurate pathology and compassionate outpatient care."
             />
             <div className="grid sm:grid-cols-2 gap-5 mt-8">
               {[
@@ -1136,35 +1136,160 @@ function Book() {
   );
 }
 
+function PortraitFrame({ src, alt, initials, name, caption }) {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  return (
+    <div className="relative rounded-3xl overflow-hidden border border-[#E5ECF1] bg-gradient-to-br from-[#EDF4FA] via-white to-[#DBEAFE] shadow-soft aspect-[4/4.4] max-w-[360px] w-full mx-auto">
+      {!imgFailed ? (
+        <img
+          src={src}
+          alt={alt}
+          onError={() => setImgFailed(true)}
+          className="w-full h-full object-cover object-top"
+        />
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center p-6 pb-20 text-center">
+          <div className="w-24 h-24 rounded-full bg-deep text-white font-display font-extrabold text-2xl flex items-center justify-center shadow-md ring-4 ring-white">
+            {initials}
+          </div>
+          <p className="text-xs font-medium text-slate-500 mt-4">Portrait coming soon</p>
+        </div>
+      )}
+      <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 border border-slate-100 shadow-xs">
+        <p className="font-display font-extrabold text-deep text-sm leading-tight">{name}</p>
+        <p className="text-[11px] font-semibold text-navy mt-0.5">{caption}</p>
+      </div>
+    </div>
+  );
+}
+
 function About() {
+  const { heritage, founder, centerHead, pillars } = aboutData;
+  const pillarIcons = [ShieldCheck, Clock, HomeIcon, FileText];
+
   return (
     <>
       <PageHero
-        tag="Our laboratory"
-        title="About Zeenat Laboratories"
-        description="The Medical Laboratories — providing quality diagnostic testing and health screenings in Lahore at our Wahdat Road branch."
+        tag="About Zeenat Laboratories"
+        title="Over six decades of trusted diagnostics"
+        description="Carrying forward the legacy of The Medical Laboratories since 1964—combining pioneering pathology standards with accessible outpatient care at our Wahdat Road branch in Lahore."
       />
-      <section className="container-site py-20 grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <Heading
-            tag="Welcome"
-            heading="Serving patients across Lahore"
-            description="Zeenat Laboratories operates a modern clinical diagnostic center at Wahdat Road (near Ijaz Hospital, Multan Chungi). Our mission is to make diagnostic information, blood tests, and doorstep sample collection reliable and easily accessible."
+
+      {/* Founder & Heritage */}
+      <section className="container-site py-16 md:py-20">
+        <div className="grid lg:grid-cols-[360px_1fr] gap-10 lg:gap-14 items-center">
+          <PortraitFrame
+            src={founder.image}
+            alt={founder.imageAlt}
+            initials={founder.initials}
+            name={founder.name}
+            caption={founder.badge}
           />
-          <div className="mt-6 space-y-3 text-slate-600 text-sm">
-            <p>✓ <strong>Wahdat Road Outpatient Center:</strong> A convenient location with walk-in testing and early morning fasting draws.</p>
-            <p>✓ <strong>Strict Quality Protocols:</strong> Sterile, single-use vacuum collection tubes and precision pathology testing.</p>
-            <p>✓ <strong>Digital Accessibility:</strong> Fast, high-resolution PDF report delivery directly on your WhatsApp.</p>
+          <div>
+            <p className="eyebrow mb-3">Founder & Legacy</p>
+            <h2 className="section-title">{founder.name}</h2>
+            <p className="text-navy font-bold text-sm mt-2">{founder.role}</p>
+            <p className="muted mt-4">{heritage.summary}</p>
+            <p className="muted mt-3">{founder.bio}</p>
+
+            <div className="grid sm:grid-cols-3 gap-3 mt-6">
+              {[
+                ['Est. ' + heritage.established, 'Founded in Lahore'],
+                ['60+ Years', 'Diagnostic Heritage'],
+                ['Clinical Precision', 'Ethical Lab Reporting']
+              ].map(([stat, label]) => (
+                <div key={stat} className="rounded-xl bg-mist border border-[#E5ECF1] px-4 py-3">
+                  <strong className="block font-display font-extrabold text-deep text-base">{stat}</strong>
+                  <span className="text-xs text-slate-500">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 space-y-2.5">
+              {founder.highlights.map((item) => (
+                <div key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
+                  <Award size={17} className="text-navy shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <Link to="/book" className="btn-primary mt-8">
-            Request a test <ArrowRight size={17} />
-          </Link>
         </div>
-        <img
-          className="w-full h-[400px] object-cover rounded-3xl"
-          src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=85"
-          alt="Laboratory environment"
+      </section>
+
+      {/* Center Head — Muhammad Zain */}
+      <section className="bg-mist border-y border-[#E6EDF3] py-16 md:py-20">
+        <div className="container-site">
+          <div className="card p-7 sm:p-10 lg:p-12 grid lg:grid-cols-[1fr_340px] gap-10 items-center">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="eyebrow">Center Leadership</span>
+                <span className="inline-flex items-center gap-1.5 bg-navy/10 text-navy text-xs font-extrabold px-3 py-1 rounded-full">
+                  <UserCheck size={13} /> {centerHead.experience}
+                </span>
+              </div>
+              <h2 className="section-title">{centerHead.name}</h2>
+              <p className="text-navy font-bold text-sm mt-2">{centerHead.role}</p>
+              <p className="muted mt-4">{centerHead.bio}</p>
+
+              <div className="mt-6 space-y-2.5">
+                {centerHead.highlights.map((item) => (
+                  <div key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <CheckCircle2 size={17} className="text-navy shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3 mt-8">
+                <Link to="/book" className="btn-primary text-sm">
+                  <CalendarDays size={17} /> Book a Test
+                </Link>
+                <a
+                  href={contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-sm"
+                >
+                  <WhatsAppIcon size={17} className="text-[#128C7E]" /> Message Branch
+                </a>
+              </div>
+            </div>
+
+            <PortraitFrame
+              src={centerHead.image}
+              alt={centerHead.imageAlt}
+              initials={centerHead.initials}
+              name={centerHead.name}
+              caption={`${centerHead.role} · ${centerHead.experience}`}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Wahdat Road Diagnostic Care Highlights */}
+      <section className="container-site py-16 md:py-20">
+        <Heading
+          tag="Wahdat Road Branch"
+          heading="Care built around patients"
+          description="Modern diagnostic precision paired with convenient hours, home sampling, and digital reporting."
+          center={true}
         />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+          {pillars.map((p, idx) => {
+            const Icon = pillarIcons[idx] || ShieldCheck;
+            return (
+              <div key={p.title} className="card p-6 flex flex-col">
+                <span className="w-11 h-11 rounded-xl bg-navy/10 text-navy flex items-center justify-center mb-4">
+                  <Icon size={22} />
+                </span>
+                <h3 className="font-display font-extrabold text-lg text-deep">{p.title}</h3>
+                <p className="muted text-sm mt-2">{p.desc}</p>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </>
   );
